@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<launch>
+    	<!--  **********  TFs **********  -->
+	<arg name="pi" value="3.14159265358979" />
+	<arg name="pi/2" value="1.5707963267948966" />
+	<arg name="pi/4" value="0.785398163397448" />
+ 	<arg name="optical_rotate" value="0 0 0 -$(arg pi/2) 0 -$(arg pi/2)" />
+	<arg name="imu_rotate" value="0 0 0 -$(arg pi/2) 0 0" />
+    
+    <node pkg="rosserial_python" name="rosserial_lino" type="serial_node.py" output="screen">
+        <param name="port" value="/dev/robot_base" />
+        <param name="baud" value="57600" />
+    </node>
+    
+
+    <!-- IMU Relay and Filter -->
+    <include file="$(find turtlebot_6wd)/launch/imu.launch" />
+
+    <!-- Publish Linorobot odometry -->
+    <node pkg="turtlebot_6wd" name="base_controller_node" type="base_node" output="screen" />
+
+    <!-- Publish static transform from base_footprint to base_link -->
+    
+    <node pkg="tf" type="static_transform_publisher" name="base_footprint_to_base_link" args="0 0 0.075 0 0 0  /base_footprint /base_link  100"/>
+    
+
+    <!-- Run Linorobot compatible laser drivers -->
+    
+    <include file="$(find turtlebot_6wd)/launch/laser.launch" />
+    
+</launch>

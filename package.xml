@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package>
+  <name>turtlebot_6wd</name>
+  <version>0.0.1</version>
+  <description>Launchers for Erle-Rover</description>
+  <maintainer email="ahcorde@erlerobot.com">Alejandro Hernandez</maintainer>
+  <license>BSD</license>
+  <url type="website">http://erlerobot.com</url>
+  <url type="repository">https://github.com/erlerbot/ros_gazebo_cpp</url>
+  <url type="bugtracker">https://github.com/erlerbot/ros_gazebo_cpp/issues</url>
+  <author email="ahcorde@erlerobot.com">Alejandro Hernández</author>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  
+    <build_depend>roscpp</build_depend>
+    <build_depend>rospy</build_depend>
+    <build_depend>tf</build_depend>
+    <build_depend>nav_msgs</build_depend>
+    <build_depend>lino_msgs</build_depend>
+    <build_depend>sensor_msgs</build_depend>
+    <build_depend>geometry_msgs</build_depend>
+    <build_depend>std_msgs</build_depend>
+  
+    <run_depend>roscpp</run_depend>
+    <run_depend>rospy</run_depend>
+    <run_depend>rosserial_python</run_depend>
+    <run_depend>tf</run_depend>
+    <run_depend>nav_msgs</run_depend>
+    <run_depend>lino_msgs</run_depend>
+    <run_depend>sensor_msgs</run_depend>
+    <run_depend>geometry_msgs</run_depend>
+    <run_depend>std_msgs</run_depend>
+
+  <run_depend>rviz</run_depend>
+</package>
