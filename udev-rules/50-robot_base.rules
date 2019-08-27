@@ -1,0 +1,3 @@
+#KERNEL=="ttyAMA0", SYMLINK+="robot_base", GROUP="dialout", MODE="0666"
+#KERNEL=="ttyACM0", SYMLINK+="ttyS1", GROUP="dialout", MODE="0666"
+SUBSYSTEMS=="usb", KERNEL=="ttyUSB[0-9]*", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", SYMLINK+="robot_base"

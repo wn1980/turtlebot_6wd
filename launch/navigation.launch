@@ -13,7 +13,9 @@
 	<include file="$(find turtlebot_6wd)/launch/localizacion.launch"/>
 	<include file="$(find turtlebot_6wd)/launch/move_base.launch"/>
 
+
 	<include file="$(find turtlebot_6wd)/launch/odom_laser.launch"/>
+
 	
 	<!--
 	<include file="$(find turtlebot_6wd)/launch/tf.launch"/>

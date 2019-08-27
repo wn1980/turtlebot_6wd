@@ -16,8 +16,6 @@
         <param name="world_frame" value="enu" />
         <param name="orientation_stddev" value="0.05" />
     </node>
-
-	<node pkg="turtlebot_6wd" type="imu_vel" name="imu_vel_node"/>
         
     <!-- Publish static transform from base_footprint to imu_link -->
     <node pkg="tf" type="static_transform_publisher" name="base_footprint_to_imu_link" args="0 0 0 0 0 0  /base_footprint /imu_link  100"/>

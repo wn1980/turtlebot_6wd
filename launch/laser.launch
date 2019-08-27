@@ -6,16 +6,20 @@
     <include file="$(find linorobot)/launch/include/lidar/$(env LINOLIDAR).launch" />
     -->
     <node pkg="xv_11_laser_driver" type="neato_laser_publisher" name="xv_11_laser_driver">
-      <param name="port" value="/dev/lidar"/>
+      <param name="port" value="/dev/xv11_lidar"/>
       <param name="firmware_version" value="2"/>
       <param name="frame_id" value="laser"/>
     </node>
 
     <!-- Publish static transform of the laser. Define your sensor offset here -->
     <!--
-    <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0 0 0 0 0 0  /base_footprint /laser  100"/>
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.15 0 0.18 0 0 0  /base_link /laser  5"/>
     -->
-    <node pkg="tf" type="static_transform_publisher" name="base_to_laser_broadcaster" args="0.15 0 0.18 0 0 0 base_link laser 100" />
+
+<!--
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_laser_broadcaster" args="0.15 0 0.18 0 -3.14159 0 base_link laser"/>
+-->
+    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_laser_broadcaster" args="-0.15 0 0.18 0 0 0 base_link laser"/>
 </launch>
 
 

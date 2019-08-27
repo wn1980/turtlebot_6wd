@@ -27,7 +27,7 @@ void cmd_velCallback(const geometry_msgs::Twist& vel){
 	g_prev_command_time = ros::Time::now();
 }
 
-void imu_velCallback(const geometry_msgs::Twist& vel){
+void raw_velCallback(const geometry_msgs::Twist& vel){
 	vel_x = vel.linear.x;
 	imu_z = vel.angular.z;
 }
@@ -42,11 +42,11 @@ int main(int argc, char** argv){
     ros::NodeHandle n;
     ros::NodeHandle nh_private_("~");
     ros::Subscriber cmd_vel_sub = n.subscribe("cmd_vel", 50, cmd_velCallback);
-    ros::Subscriber imu_vel_sub = n.subscribe("raw_vel", 50, imu_velCallback);
+    ros::Subscriber imu_vel_sub = n.subscribe("raw_vel", 50, raw_velCallback);
     ros::Subscriber pid_sub = n.subscribe("pid", 50, PIDCallback);
     ros::Publisher pid_pub = n.advertise<geometry_msgs::Twist>("cmd_vel_pid", 50);
 
-    double rate = 20.0;
+    double rate = 4.0;
 
     ros::Rate r(rate);
     
@@ -54,14 +54,14 @@ int main(int argc, char** argv){
         ros::spinOnce();
         ros::Time current_time = ros::Time::now();
         
-        if((current_time - g_prev_command_time).toSec() >= 0.25){
+        if((current_time - g_prev_command_time).toSec() >= 0.3){
 			g_vel_x = 0.;
 			g_imu_z = 0.;
 		}
         
         geometry_msgs::Twist msg;
-        //msg.linear.x 	= pid_vel_x.compute(g_vel_x, vel_x);
-        msg.linear.x 	= g_vel_x;
+        msg.linear.x 	= pid_vel_x.compute(g_vel_x, vel_x);
+        //msg.linear.x 	= g_vel_x;
         msg.angular.z 	= pid_imu_z.compute(g_imu_z, imu_z);
         pid_pub.publish(msg);
 

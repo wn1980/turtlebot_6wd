@@ -1,0 +1,2 @@
+KERNEL=="ttyACM?", SUBSYSTEM=="tty", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="0483", ATTRS{serial}=="5039980", MODE="0666" SYMLINK+="robot_base"
+KERNEL=="ttyUSB?", SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{serial}=="0001", MODE="0666" SYMLINK+="xv11_lidar"
